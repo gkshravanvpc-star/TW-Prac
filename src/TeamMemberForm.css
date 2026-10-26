@@ -1,0 +1,123 @@
+
+/* Page background and layout */
+.team-member-page {
+  min-height: 100vh;
+  padding: 48px 20px;
+  background: #f4f7fb;
+  font-family: Arial, sans-serif;
+  color: #1e293b;
+}
+
+/* Heading */
+.team-member-heading {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.team-member-heading h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #172554;
+}
+
+.team-member-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+/* Form card */
+.team-member-form {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+  box-sizing: border-box;
+}
+
+/* Each field */
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* Inputs */
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input::placeholder {
+  color: #94a3b8;
+}
+
+.form-group input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+/* Validation errors */
+.form-error {
+  margin: 7px 0 0;
+  color: #dc2626;
+  font-size: 13px;
+}
+
+/* Submit button */
+.submit-button {
+  width: 100%;
+  padding: 13px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.submit-button:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+.submit-button:focus-visible {
+  outline: 3px solid #a5b4fc;
+  outline-offset: 3px;
+}
+
+/* Smaller screens */
+@media (max-width: 520px) {
+  .team-member-page {
+    padding: 28px 16px;
+  }
+
+  .team-member-heading h1 {
+    font-size: 25px;
+  }
+
+  .team-member-form {
+    padding: 24px 20px;
+  }
+}

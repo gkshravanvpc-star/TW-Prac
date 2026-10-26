@@ -1,0 +1,119 @@
+
+/* Main POST practice container */
+.post-container {
+  max-width: 650px;
+  margin: 32px auto;
+  padding: 28px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  font-family: Arial, sans-serif;
+}
+
+/* Form heading */
+.post-title {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Supporting text */
+.post-description {
+  margin: 0 0 24px;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Form layout */
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Input label */
+.post-label {
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Expense name input */
+.post-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Input focus effect */
+.post-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Submit button */
+.post-button {
+  margin-top: 8px;
+  padding: 12px 18px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Button hover effect */
+.post-button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+/* Button while submitting */
+.post-button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+/* Current input value */
+.post-preview {
+  margin: 20px 0 0;
+  padding: 12px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  color: #475569;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+/* Success or error message */
+.post-message {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+/* Responsive design for mobile screens */
+@media (max-width: 600px) {
+  .post-container {
+    margin: 20px 12px;
+    padding: 20px;
+  }
+
+  .post-title {
+    font-size: 21px;
+  }
+}
