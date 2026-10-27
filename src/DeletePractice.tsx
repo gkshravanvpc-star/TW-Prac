@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import axios from "axios";
 
 type Expense = {
   id: number;
@@ -23,16 +24,9 @@ function DeletePractice() {
     setMessage("");
 
     try {
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${id}`,
-        {
-          method: "DELETE",
-        }
+      await axios.delete(
+        `https://jsonplaceholder.typicode.com/posts/${id}`
       );
-
-      if (!response.ok) {
-        throw new Error("Failed to delete expense.");
-      }
 
       setExpenses((previousExpenses) =>
         previousExpenses.filter((expense) => expense.id !== id)
@@ -48,69 +42,71 @@ function DeletePractice() {
   }
 
   return (
-    <section
-      style={{
-        maxWidth: "600px",
-        margin: "30px auto",
-        padding: "24px",
-        fontFamily: "Arial, sans-serif",
-        backgroundColor: "#ffffff",
-        border: "1px solid #e2e8f0",
-        borderRadius: "12px",
-      }}
-    >
-      <h2>DELETE API Practice</h2>
+    <section className="mx-auto mt-6 w-full max-w-2xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div className="border-b border-slate-200 px-6 py-5">
+        <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-red-600">
+          Axios API Practice
+        </p>
 
-      <p>Click Delete to remove an expense from the list.</p>
+        <h2 className="text-xl font-bold text-slate-900">
+          Delete Expense Type
+        </h2>
 
-      {expenses.length === 0 ? (
-        <p>No expenses remaining.</p>
-      ) : (
-        expenses.map((expense) => (
-          <div
-            key={expense.id}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "12px",
-              marginBottom: "10px",
-              backgroundColor: "#f8fafc",
-              borderRadius: "8px",
-            }}
-          >
-            <span>{expense.name}</span>
+        <p className="mt-2 text-sm text-slate-500">
+          Select an expense type to remove it from this practice list.
+        </p>
+      </div>
 
-            <button
-              type="button"
-              onClick={() => deleteExpense(expense.id)}
-              disabled={loadingId !== null}
-              style={{
-                padding: "8px 14px",
-                color: "#ffffff",
-                backgroundColor: "#dc2626",
-                border: "none",
-                borderRadius: "6px",
-                cursor: loadingId !== null ? "not-allowed" : "pointer",
-              }}
+      <div className="space-y-3 p-6">
+        {expenses.length === 0 ? (
+          <p className="rounded-lg bg-slate-50 p-4 text-sm text-slate-500">
+            No expenses remaining.
+          </p>
+        ) : (
+          expenses.map((expense) => (
+            <div
+              key={expense.id}
+              className="flex items-center justify-between gap-4 rounded-xl border border-slate-200 p-4 transition hover:bg-slate-50"
             >
-              {loadingId === expense.id ? "Deleting..." : "Delete"}
-            </button>
-          </div>
-        ))
-      )}
+              <div>
+                <p className="font-semibold text-slate-800">
+                  {expense.name}
+                </p>
+                <p className="mt-1 text-xs text-slate-500">
+                  Expense ID: {expense.id}
+                </p>
+              </div>
 
-      {message && (
-        <p style={{ color: "green" }} role="status">
-          {message}
-        </p>
-      )}
+              <button
+                type="button"
+                onClick={() => deleteExpense(expense.id)}
+                disabled={loadingId !== null}
+                className="rounded-lg bg-red-50 px-4 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {loadingId === expense.id ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+          ))
+        )}
 
-      {error && (
-        <p style={{ color: "red" }} role="alert">
-          {error}
-        </p>
-      )}
+        {message && (
+          <p
+            role="status"
+            className="rounded-lg bg-emerald-50 p-3 text-sm font-medium text-emerald-700"
+          >
+            {message}
+          </p>
+        )}
+
+        {error && (
+          <p
+            role="alert"
+            className="rounded-lg bg-red-50 p-3 text-sm font-medium text-red-700"
+          >
+            {error}
+          </p>
+        )}
+      </div>
     </section>
   );
 }
