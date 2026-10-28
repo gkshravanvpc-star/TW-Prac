@@ -1,3 +1,4 @@
+
 import {
   BrowserRouter,
   Routes,
@@ -9,6 +10,18 @@ import {
   Outlet,
 } from "react-router";
 
+import {
+  Button,
+  Typography,
+  Box,
+  Container,
+  Stack,
+  Card,
+  CardContent,
+  Grid,
+  Paper,
+} from "@mui/material";
+
 import PostPractice from "./PostPractice";
 import DeletePractice from "./DeletePractice";
 import PutPractice from "./PutPractice";
@@ -16,406 +29,268 @@ import EventPractice from "./EventPractice";
 import TimerPractice from "./TimerPractice";
 import IntervalPractice from "./IntervalPractice";
 import DatePractice from "./DatePractice";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import AddIcon from "@mui/icons-material/Add";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Stack from "@mui/material/Stack";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import MuiFormPractice from "./MuiFormPractice";
+import DialogPractice from "./DialogPractice";
+import MenuPractice from "./MenuPractice";
+import TablePractice from "./TablePractice";
 
 // Home page
 function Home() {
-  return (
-    <div className="rounded-xl bg-white p-6 shadow-sm">
-      <h2 className="text-2xl font-bold text-slate-900">
-        Welcome to React Practice
-      </h2>
-<Typography variant="h5" gutterBottom>
-  My First Material UI Page
-</Typography>
-
-<Button
-  variant="contained"
-  onClick={() => alert("MUI is working!")}
->
-  Test MUI Button
-</Button>
-      <p className="mt-2 text-slate-600">
-        Choose a topic from the navigation menu to begin practicing.
-      </p>
-      <Link
-        to="/students/2"
-        className="mt-4 inline-block text-blue-600 underline"
-      >
-        View Ravi's Profile
-      </Link>
-
-      <Typography variant="h4" gutterBottom>
-  Student Dashboard
-</Typography>
-<MuiFormPractice />
-<Typography variant="body1" gutterBottom>
-  Manage your students from one place.
-</Typography>
-
-<Divider />
-
-<Button
-  variant="contained"
-  color="primary"
-  startIcon={<AddIcon />}
-  onClick={() => alert("Add Student clicked!")}
-  sx={{ mt: 2 }}
->
-  Add Student
-</Button>
-    </div>
-  );
+  return <MuiFormPractice />;
 }
 
 // Axios practice page
 function AxiosPage() {
   return (
-    <div className="space-y-6">
-      <PostPractice />
-      <DeletePractice />
-      <PutPractice />
-    </div>
+    <Container sx={{ py: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Axios Practice
+      </Typography>
+
+      <Stack spacing={4}>
+        <PostPractice />
+        <DeletePractice />
+        <PutPractice />
+      </Stack>
+    </Container>
   );
 }
 
-// Events practice page
+// Event practice page
 function EventsPage() {
   return (
-    <div className="space-y-6">
+    <Container sx={{ py: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Event Propagation Practice
+      </Typography>
+
       <EventPractice />
-    </div>
+    </Container>
   );
 }
 
 // Timer practice page
 function TimersPage() {
   return (
-    <div className="space-y-6">
-      <TimerPractice />
-      <IntervalPractice />
-    </div>
+    <Container sx={{ py: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Timer Practice
+      </Typography>
+
+      <Stack spacing={4}>
+        <TimerPractice />
+        <IntervalPractice />
+      </Stack>
+    </Container>
   );
 }
 
 // Date practice page
 function DatesPage() {
   return (
-    <div className="space-y-6">
+    <Container sx={{ py: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Date Object Practice
+      </Typography>
+
       <DatePractice />
-    </div>
+    </Container>
   );
 }
 
+// Read the student ID from the URL
 function StudentPage() {
   const { id } = useParams();
 
-  const students: Record<string, string> = {
-    "1": "Anu",
-    "2": "Ravi",
-    "3": "Priya",
-  };
-
-  const studentName = id ? students[id] : undefined;
-
-  if (!studentName) {
-    return <h2>Student not found!</h2>;
-  }
-
   return (
-    <section className="rounded-xl bg-white p-6 shadow-sm">
-      <h2 className="text-2xl font-bold text-slate-900">
-        Student Profile
-      </h2>
+    <Container sx={{ py: 4 }}>
+      <Typography variant="h4">Student Details</Typography>
+      <Typography sx={{ mt: 2 }}>Student ID: {id}</Typography>
 
-      <p className="mt-3 text-slate-600">
-        Student ID: {id}
-      </p>
-
-      <p className="mt-1 text-slate-600">
-        Student Name: {studentName}
-      </p>
-    </section>
+      <Button
+        component={Link}
+        to="/"
+        variant="contained"
+        sx={{ mt: 2 }}
+      >
+        Go Home
+      </Button>
+    </Container>
   );
 }
 
-
+// Navigate programmatically
 function StudentNavigation() {
   const navigate = useNavigate();
 
   return (
-    <section className="rounded-xl bg-white p-6 shadow-sm">
-      <h2 className="text-xl font-bold text-slate-900">
+    <Container sx={{ py: 4 }}>
+      <Typography variant="h4" gutterBottom>
         Student Navigation
-      </h2>
+      </Typography>
 
-      <p className="mt-2 text-slate-600">
-        Click the button to open Ravi's profile.
-      </p>
+      <Stack direction="row" spacing={2}>
+        <Button
+          variant="contained"
+          onClick={() => navigate("/students/101")}
+        >
+          Student 101
+        </Button>
 
-      <button
-        onClick={() => navigate("/students/2")}
-        className="mt-4 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-      >
-        Go to Ravi's Profile
-      </button>
-    </section>
+        <Button
+          variant="outlined"
+          onClick={() => navigate("/students/102")}
+        >
+          Student 102
+        </Button>
+      </Stack>
+    </Container>
   );
 }
 
-
-
-
-function DashboardLayout() {
-  return (
-    <div className="rounded-xl bg-white p-6 shadow-sm">
-      <h2 className="text-2xl font-bold text-slate-900">
-        Dashboard
-      </h2>
-<Container maxWidth="md">
-  <Box sx={{ py: 3 }}>
-    <Typography variant="h4" gutterBottom>
-      Student Dashboard
-    </Typography>
-
-    <Typography variant="body1" sx={{ mb: 3 }}>
-      Manage your students from one place.
-    </Typography>
-
-    <Grid container spacing={2}>
-      <Grid size={{ xs: 12, md: 6 }}>
-        <Paper sx={{ p: 2 }}>
-          <Typography variant="h6">
-            Total Students
-          </Typography>
-          <Typography variant="h4">
-            25
-          </Typography>
-        </Paper>
-      </Grid>
-
-      <Grid size={{ xs: 12, md: 6 }}>
-        <Paper sx={{ p: 2 }}>
-          <Typography variant="h6">
-            Active Courses
-          </Typography>
-          <Typography variant="h4">
-            4
-          </Typography>
-        </Paper>
-      </Grid>
-
-      <Grid size={{ xs: 12 }}>
-        <Card>
-          <CardContent>
-            <Typography variant="h6">
-              Anu
-            </Typography>
-
-            <Typography variant="body2" sx={{ mb: 2 }}>
-              Course: React
-            </Typography>
-
-            <Stack direction="row" spacing={2}>
-              <Button variant="contained">
-                View Profile
-              </Button>
-
-              <Button variant="outlined">
-                Edit
-              </Button>
-            </Stack>
-          </CardContent>
-        </Card>
-      </Grid>
-    </Grid>
-  </Box>
-</Container>
-      <nav className="my-4 flex flex-wrap gap-3">
-        <NavLink to="/dashboard" end
-          className="text-blue-600 hover:underline">
-          Overview
-        </NavLink>
-
-        <NavLink to="/dashboard/profile"
-          className="text-blue-600 hover:underline">
-          Profile
-        </NavLink>
-
-        <NavLink to="/dashboard/settings"
-          className="text-blue-600 hover:underline">
-          Settings
-        </NavLink>
-      </nav>
-
-      {/* The selected child page appears here */}
-      <Outlet />
-    </div>
-    
-  );
-}
-
+// Dashboard overview
 function DashboardOverview() {
-  return <p>Welcome to your dashboard overview!</p>;
+  return (
+    <Box>
+      <Typography variant="h5" gutterBottom>
+        Overview
+      </Typography>
+
+      <Grid container spacing={2}>
+        {[
+          { title: "Total Students", value: "120" },
+          { title: "Active Courses", value: "8" },
+          { title: "Pending Tasks", value: "15" },
+        ].map((item) => (
+          <Grid key={item.title} size={{ xs: 12, sm: 4 }}>
+            <Card>
+              <CardContent>
+                <Typography color="text.secondary">
+                  {item.title}
+                </Typography>
+
+                <Typography variant="h4" sx={{ mt: 1 }}>
+                  {item.value}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
 }
 
+// Dashboard profile
 function DashboardProfile() {
-  return <p>This is your dashboard profile.</p>;
+  return (
+    <Paper sx={{ p: 3 }}>
+      <Typography variant="h5" gutterBottom>
+        Profile
+      </Typography>
+
+      <Typography>Welcome to your profile page.</Typography>
+    </Paper>
+  );
 }
 
+// Dashboard settings
 function DashboardSettings() {
-  return <p>Manage your dashboard settings here.</p>;
+  return (
+    <Paper sx={{ p: 3 }}>
+      <Typography variant="h5" gutterBottom>
+        Settings
+      </Typography>
+
+      <Typography>Manage your dashboard settings here.</Typography>
+    </Paper>
+  );
 }
 
+// Shared dashboard layout
+function DashboardLayout() {
+  const navStyle = ({ isActive }: { isActive: boolean }) => ({
+    textDecoration: "none",
+    color: isActive ? "#1976d2" : "inherit",
+    fontWeight: isActive ? 700 : 400,
+  });
 
+  return (
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Dashboard
+      </Typography>
+
+      <Paper sx={{ p: 2, mb: 3 }}>
+        <Stack direction="row" spacing={3} sx={{ flexWrap: "wrap" }}>
+          <NavLink to="/dashboard" end style={navStyle}>
+            Overview
+          </NavLink>
+
+          <NavLink to="/dashboard/profile" style={navStyle}>
+            Profile
+          </NavLink>
+
+          <NavLink to="/dashboard/settings" style={navStyle}>
+            Settings
+          </NavLink>
+        </Stack>
+      </Paper>
+
+      <Outlet />
+    </Container>
+  );
+}
+
+// Main application and routes
 function App() {
   return (
     <BrowserRouter>
-      <main className="min-h-screen bg-slate-100 px-4 py-8 sm:px-8">
-        <div className="mx-auto max-w-5xl">
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-          {/* Page heading */}
-          <header className="mb-6">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-blue-600">
-              React + TypeScript
-            </p>
+        <Route path="/axios" element={<AxiosPage />} />
 
-            <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-              My React Practice Hub
-            </h1>
+        <Route path="/events" element={<EventsPage />} />
 
-            <p className="mt-2 text-sm leading-6 text-slate-500">
-              Practice Axios, events, timers, dates, and React Router.
-            </p>
-          </header>
+        <Route path="/timers" element={<TimersPage />} />
 
-          {/* Navigation menu */}
-          <nav className="mb-8 flex flex-wrap gap-3 rounded-xl bg-white p-4 shadow-sm">
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                `rounded-lg px-4 py-2 text-sm font-medium ${
-                  isActive
-                    ? "bg-blue-600 text-white"
-                    : "text-slate-600 hover:bg-slate-100"
-                }`
-              }
-            >
-              Home
-            </NavLink>
+        <Route path="/dates" element={<DatesPage />} />
 
-            <NavLink
-              to="/axios"
-              className={({ isActive }) =>
-                `rounded-lg px-4 py-2 text-sm font-medium ${
-                  isActive
-                    ? "bg-blue-600 text-white"
-                    : "text-slate-600 hover:bg-slate-100"
-                }`
-              }
-            >
-              Axios
-            </NavLink>
+        <Route path="/students/:id" element={<StudentPage />} />
 
-            <NavLink
-              to="/events"
-              className={({ isActive }) =>
-                `rounded-lg px-4 py-2 text-sm font-medium ${
-                  isActive
-                    ? "bg-blue-600 text-white"
-                    : "text-slate-600 hover:bg-slate-100"
-                }`
-              }
-            >
-              Events
-            </NavLink>
+        <Route
+          path="/student-navigation"
+          element={<StudentNavigation />}
+        />
 
-            <NavLink
-              to="/timers"
-              className={({ isActive }) =>
-                `rounded-lg px-4 py-2 text-sm font-medium ${
-                  isActive
-                    ? "bg-blue-600 text-white"
-                    : "text-slate-600 hover:bg-slate-100"
-                }`
-              }
-            >
-              Timers
-            </NavLink>
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardOverview />} />
+          <Route path="profile" element={<DashboardProfile />} />
+          <Route path="settings" element={<DashboardSettings />} />
+        </Route>
 
-            <NavLink
-              to="/dates"
-              className={({ isActive }) =>
-                `rounded-lg px-4 py-2 text-sm font-medium ${
-                  isActive
-                    ? "bg-blue-600 text-white"
-                    : "text-slate-600 hover:bg-slate-100"
-                }`
-              }
-            >
-              Dates
-            </NavLink>
-            <NavLink
-  to="/dashboard"
-  className={({ isActive }) =>
-    `rounded-lg px-4 py-2 text-sm font-medium ${
-      isActive
-        ? "bg-blue-600 text-white"
-        : "text-slate-600 hover:bg-slate-100"
-    }`
-  }
->
-  Dashboard
-</NavLink>
-          </nav>
+        <Route path="/menu" element={<MenuPractice />} />
 
-          {/* Page content changes according to the URL */}
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/axios" element={<AxiosPage />} />
-            <Route path="/events" element={<EventsPage />} />
-            <Route path="/timers" element={<TimersPage />} />
-            <Route path="/dates" element={<DatesPage />} />
+        <Route path="/dialog" element={<DialogPractice />} />
 
+        <Route path="/table" element={<TablePractice />} />
 
-            <Route path="/students/:id" element={<StudentPage />} />  
-            <Route path="/student-navigation"element={<StudentNavigation />}/>
-            <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route index element={<DashboardOverview />} />
-            <Route path="profile" element={<DashboardProfile />} />
-            <Route path="settings" element={<DashboardSettings />} />
-            </Route>
-            {/* Page for unknown URLs */}
-           <Route
-  path="*"
-  element={
-    <section>
-      <h2>404 - Page Not Found</h2>
-      <Link to="/">Return Home</Link>
-    </section>
-  }
-/>
-          </Routes>
+        <Route
+          path="*"
+          element={
+            <Container sx={{ py: 4 }}>
+              <Typography variant="h4" gutterBottom>
+                404 - Page Not Found
+              </Typography>
 
-          {/* Footer */}
-          <footer className="mt-8 border-t border-slate-200 pt-4 text-center text-sm text-slate-500">
-            React learning practice
-          </footer>
-
-        </div>
-      </main>
+              <Button component={Link} to="/" variant="contained">
+                Return Home
+              </Button>
+            </Container>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 }
